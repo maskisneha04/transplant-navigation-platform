@@ -1,0 +1,37 @@
+from datetime import datetime, timedelta, timezone
+
+from jose import jwt, JWTError
+
+from app.config import settings
+
+
+def _create_token(subject: str, role: str, expires_delta: timedelta, token_type: str) -> str:
+    now = datetime.now(timezone.utc)
+    payload = {
+        "sub": subject,
+        "role": role,
+        "type": token_type,
+        "iat": now,
+        "exp": now + expires_delta,
+    }
+    return jwt.encode(payload, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
+
+
+def create_access_token(user_id: str, role: str) -> str:
+    return _create_token(
+        user_id, role, timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES), "access"
+    )
+
+
+def create_refresh_token(user_id: str, role: str) -> str:
+    return _create_token(
+        user_id, role, timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS), "refresh"
+    )
+
+
+def decode_token(token: str) -> dict:
+    """Raises jose.JWTError if invalid/expired — caller handles the 401."""
+    return jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_ALGORITHM])
+
+
+__all__ = ["create_access_token", "create_refresh_token", "decode_token", "JWTError"]
