@@ -33,7 +33,7 @@ export default function CaseRecommendationsPage() {
           description="Explainable, non-clinical navigation recommendations based on verified centre data and case preferences."
         />
 
-        <div>
+                <div>
           <Link
             to={`/cases/${id}`}
             className="text-sm font-medium text-blue-600 hover:underline"
@@ -41,6 +41,67 @@ export default function CaseRecommendationsPage() {
             ← Back to Case
           </Link>
         </div>
+
+        <Card>
+          <div className="p-6">
+            <h2 className="text-lg font-semibold text-slate-900">
+              How the Recommendation Score Is Calculated
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600">
+              The current system uses a transparent, non-clinical navigation
+              scoring baseline. The score is based on the following case and
+              centre attributes:
+            </p>
+
+            <div className="mt-5 space-y-3">
+              <div className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3">
+                <span className="text-sm font-medium text-slate-800">
+                  Transplant Type Match
+                </span>
+                <span className="text-sm font-semibold text-slate-700">
+                  60%
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3">
+                <span className="text-sm font-medium text-slate-800">
+                  State Match
+                </span>
+                <span className="text-sm font-semibold text-slate-700">
+                  25%
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3">
+                <span className="text-sm font-medium text-slate-800">
+                  Preferred Region Match
+                </span>
+                <span className="text-sm font-semibold text-slate-700">
+                  15%
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-slate-300 pt-3">
+                <span className="text-sm font-semibold text-slate-900">
+                  Total
+                </span>
+                <span className="text-sm font-bold text-slate-900">
+                  100%
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-lg bg-slate-50 p-4">
+              <p className="text-sm text-slate-600">
+                This score supports centre navigation and does not determine
+                transplant eligibility, treatment suitability, organ
+                availability, or clinical outcomes. Final decisions require
+                appropriate human and clinical review.
+              </p>
+            </div>
+          </div>
+        </Card>
 
         {recommendationsQuery.isLoading && (
   <div className="space-y-4">
