@@ -6,7 +6,9 @@ import type { AuthUser } from "../../types/auth";
 const NAV_ITEMS = [
   { to: "/dashboard", label: "Overview" },
   { to: "/cases", label: "My Cases" },
+  { to: "/centres", label: "Transplant Centres" },
 ];
+
 
 export default function AppShell({ children }: { children: ReactNode }) {
   const location = useLocation();

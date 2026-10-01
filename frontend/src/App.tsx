@@ -5,8 +5,11 @@ import DashboardPage from "./pages/Dashboard";
 import CaseListPage from "./pages/CaseList";
 import CaseNewPage from "./pages/CaseNew";
 import CaseDetailPage from "./pages/CaseDetail";
+import CentreListPage from "./pages/CentreList";
 import ProtectedRoute from "./components/ProtectedRoute";
+import CentreDetailPage from "./pages/CentreDetail";
 import { ToastProvider } from "./components/ui/Toast";
+import CaseRecommendationsPage from "./pages/CaseRecommendations";
 
 export default function App() {
   return (
@@ -24,6 +27,31 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+  path="/centres"
+  element={
+    <ProtectedRoute>
+      <CentreListPage />
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/centres/:id"
+  element={
+    <ProtectedRoute>
+      <CentreDetailPage />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/cases/:id/recommendations"
+  element={
+    <ProtectedRoute>
+      <CaseRecommendationsPage />
+    </ProtectedRoute>
+  }
+/>
           <Route
             path="/cases"
             element={

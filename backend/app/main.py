@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
-
+from app.api import centres
+from app.api import recommendations
 from app.config import settings
 from app.database.session import engine
 from app.middleware.error_handler import register_exception_handlers
@@ -22,6 +23,8 @@ register_exception_handlers(app)
 
 app.include_router(auth_router.router)
 app.include_router(cases_router.router)
+app.include_router(centres.router)
+app.include_router(recommendations.router)
 
 
 @app.get("/health", tags=["system"])

@@ -115,20 +115,32 @@ export default function DashboardPage() {
         </div>
 
         <div>
-          <Card>
-            <CardBody className="space-y-3">
-              <h2 className="text-sm font-semibold text-slate-900 mb-1">Quick Actions</h2>
-              <Link to="/cases/new" className="block">
-                <Button className="w-full justify-center">+ Create New Case</Button>
-              </Link>
-              <Link to="/cases" className="block">
-                <Button variant="secondary" className="w-full justify-center">
-                  View My Cases
-                </Button>
-              </Link>
-            </CardBody>
-          </Card>
-        </div>
+  <Card>
+    <CardBody className="space-y-3">
+      <h2 className="text-sm font-semibold text-slate-900 mb-1">
+        Quick Actions
+      </h2>
+
+      <Link to="/cases/new" className="block">
+        <Button className="w-full justify-center">
+          + Create New Case
+        </Button>
+      </Link>
+
+      <Link to="/cases" className="block">
+        <Button variant="secondary" className="w-full justify-center">
+          View My Cases
+        </Button>
+      </Link>
+
+      <Link to="/centres" className="block">
+        <Button variant="secondary" className="w-full justify-center">
+          Browse Transplant Centres
+        </Button>
+      </Link>
+    </CardBody>
+  </Card>
+</div>
       </div>
     </AppShell>
   );

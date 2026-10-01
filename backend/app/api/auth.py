@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+from fastapi import Form
 from sqlalchemy.orm import Session
 
 from app.database.session import get_db
@@ -19,6 +20,20 @@ def register(payload: RegisterRequest, db: Session = Depends(get_db)):
 @router.post("/login", response_model=TokenResponse)
 def login(payload: LoginRequest, db: Session = Depends(get_db)):
     tokens = auth_service.authenticate_and_issue_tokens(db, payload.email, payload.password)
+    return TokenResponse(**tokens)
+
+@router.post("/token", response_model=TokenResponse)
+def token_login(
+    username: str = Form(...),
+    password: str = Form(...),
+    db: Session = Depends(get_db),
+):
+    tokens = auth_service.authenticate_and_issue_tokens(
+        db,
+        username,
+        password,
+    )
+
     return TokenResponse(**tokens)
 
 
